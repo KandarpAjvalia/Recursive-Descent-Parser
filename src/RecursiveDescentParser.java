@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 /*A -> I = E
         E -> P O P | P
@@ -22,17 +19,29 @@ public class RecursiveDescentParser {
         File file = new File("input.txt");
         BufferedReader input = new BufferedReader(new FileReader(file));
         String currentLine = input.readLine();
+        FileWriter out = null;
+        try {
+            out = new FileWriter("output.txt");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        PrintWriter print = new PrintWriter(out);
+
         while (currentLine != null) {
             current = 0;
             limit = currentLine.length();
+
+
             if(A(currentLine)) {
-                System.out.println("The string \"" + currentLine + "\" is in the language.");
+                print.println("The string \"" + currentLine + "\" is in the language.");
             }
             else {
-                System.out.println("The string \"" + currentLine + "\" is not in the language.");
+                print.println("The string \"" + currentLine + "\" is not in the language.");
             }
             currentLine = input.readLine();
         }
+        print.close();
     }
 
     private static boolean A(String line) {
