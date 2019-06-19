@@ -19,11 +19,10 @@ public class RecursiveDescentParser {
         File file = new File("input.txt");
         BufferedReader input = new BufferedReader(new FileReader(file));
         String currentLine = input.readLine();
-
         while (currentLine != null) {
             current = 0;
             limit = currentLine.length();
-            if(E(currentLine)) {
+            if(A(currentLine)) {
                 System.out.println("The string \"" + currentLine + "\" is in the language.");
             }
             else {
@@ -31,7 +30,22 @@ public class RecursiveDescentParser {
             }
             currentLine = input.readLine();
         }
+    }
 
+    private static boolean A(String line) {
+        if (I(line)) {
+            if (current < limit && line.charAt(current) == '=') {
+                current++;
+                if (E(line)) {
+                    return true;
+                }
+                return false;
+            }
+        }
+        if (E(line)) {
+            return true;
+        }
+        return false;
     }
 
     public static boolean E(String str) {
