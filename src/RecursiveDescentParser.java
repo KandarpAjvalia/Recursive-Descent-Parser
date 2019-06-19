@@ -1,4 +1,7 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 /*A -> I = E
         E -> P O P | P
@@ -13,7 +16,7 @@ import java.io.*;
 
 public class RecursiveDescentParser {
 
-    public static int current, limit;
+    private static int current, limit;
 
     public static void main(String[] args) throws IOException {
         File file = new File("input.txt");
@@ -36,32 +39,23 @@ public class RecursiveDescentParser {
         if (I(line)) {
             if (current < limit && line.charAt(current) == '=') {
                 current++;
-                if (E(line)) {
-                    return true;
-                }
-                return false;
+                return E(line);
             }
         }
-        if (E(line)) {
-            return true;
-        }
-        return false;
+        return E(line);
     }
 
-    public static boolean E(String str) {
+    private static boolean E(String str) {
         if(P(str)) {
             if(O(str)){
-                if(P(str)) {
-                    return true;
-                }
-                return false;
+                return P(str);
             }
             return true;
         }
         return false;
     }
 
-    public static boolean O(String str) {
+    private static boolean O(String str) {
         if(current < limit) {
             char o = str.charAt(current);
             if(o == '+' || o == '-' || o == '/') {
@@ -80,7 +74,7 @@ public class RecursiveDescentParser {
         return false;
     }
 
-    public static boolean P (String str) {
+    private static boolean P(String str) {
         if(I(str)) {
             return true;
         }
@@ -91,10 +85,7 @@ public class RecursiveDescentParser {
             if(I(str)) {
                 return true;
             }
-            else if(L(str)) {
-                return true;
-            }
-            return false;
+            else return L(str);
         }
         if(current < limit && str.charAt(current) == '(') {
             current++;
@@ -108,7 +99,7 @@ public class RecursiveDescentParser {
         return false;
     }
 
-    public static boolean I(String str) {
+    private static boolean I(String str) {
         if(current < limit && C(str)) {
             if(current < limit && I(str)) {
                 return true;
@@ -118,7 +109,7 @@ public class RecursiveDescentParser {
         return false;
     }
 
-    public static boolean L(String str) {
+    private static boolean L(String str) {
         if(current < limit && D(str)) {
             if(current < limit && L(str)) {
                 return true;
@@ -128,7 +119,7 @@ public class RecursiveDescentParser {
         return false;
     }
 
-    public static boolean U(String str) {
+    private static boolean U(String str) {
         if(current < limit) {
             char u = str.charAt(current);
             if(u == '+' || u == '-' || u == '!') {
@@ -139,7 +130,7 @@ public class RecursiveDescentParser {
         return false;
     }
 
-    public static boolean C(String str) {
+    private static boolean C(String str) {
         if(current < limit) {
             char c = str.charAt(current);
             if(c >= 'a' && c <= 'z') {
@@ -150,7 +141,7 @@ public class RecursiveDescentParser {
         return false;
     }
 
-    public static boolean D(String str) {
+    private static boolean D(String str) {
         if(current < limit) {
             char d = str.charAt(current);
             if(d >= '0' && d <= '9') {
