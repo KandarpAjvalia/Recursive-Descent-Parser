@@ -1,0 +1,12 @@
+The string "a=+0" is in the language.
+The string "a=!b" is in the language.
+The string "a=b+0" is in the language.
+The string "a=b++c" is in the language.
+The string "a=b**c" is in the language.
+The string "a=(((b)))" is in the language.
+The string "a=((b+c)*(d+e))" is in the language.
+The string "a=b+" is not in the language.
+The string "a=b+c*d" is in the language.
+The string "a=b+c*d^e" is in the language.
+The string "a=(b+c)*(d+e))" is in the language.
+The string "a=((b+c)*(d+e)" is not in the language.
