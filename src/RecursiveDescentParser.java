@@ -1,4 +1,9 @@
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 /*A -> I = E
         E -> P O P | P
