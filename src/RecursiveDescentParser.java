@@ -49,14 +49,14 @@ public class RecursiveDescentParser {
         print.close();
     }
 
-    private static boolean A(String line) {
-        if (I(line)) {
-            if (current < limit && line.charAt(current) == '=') {
+    private static boolean A(String str) {
+        if (I(str)) {
+            if (current < limit && str.charAt(current) == '=') {
                 current++;
-                return E(line);
+                return E(str);
             }
         }
-        return E(line);
+        return E(str);
     }
 
     private static boolean E(String str) {
